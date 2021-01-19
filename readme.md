@@ -18,10 +18,14 @@ Training a model should take about an hour. All runs use the main ERGO.py file.
 For training the ERGO model, run:
 
 `python ERGO.py train model_type dataset sampling device `
+
 When: 
 - `model_type` is `ae` for the TCR-autoencoder based model, or `lstm` for the lstm based model. 
+
 -`dataset` is `mcpas` for McPAS-TCR dataset, or `vdjdb` for VDJdb dataset. 
+
 -`sampling` can be `specific` for distinguishing different binders, `naive` for separating non-binders and binders, or `memory` for distinguishing binders and memory TCRs. 
+
 -`device` is a CUDA GPU device (e.g. 'cuda:0') or 'cpu' for CPU device.
 
 Add the flag `--protein` suit the model for protein binding instead of specific peptide binding. Add the argument `--train_auc_file=file` to write down the model train AUC during training. Add the argument `--test_auc_file=file` to write down the model validation AUC during training. Add the argument `--model_file=file.pt` in order to save the trained model. Add the argument `--test_data_file=file.pickle` in order to save the test data.
@@ -34,7 +38,8 @@ cd TCR_Autoencoder
 and run:
 
 `python train_tcr_autoencoder.py BM_data_CDR3s device model_file.pt`
-when device is a CUDA GPU device (e.g. 'cuda:0') or 'cpu' for CPU device. The trained autoencoder will be saved in model_file as a pytorch model.
+
+when `device` is a CUDA GPU device (e.g. 'cuda:0') or 'cpu' for CPU device. The trained autoencoder will be saved in model_file as a pytorch model.
 
 When you run the ERGO.py file, use the argument `--ae_file=trained_autoencoder_file`. You can use the already trained tcr_autoencoder.pt model instead, with `--ae_file=auto`.
 
@@ -42,10 +47,15 @@ When you run the ERGO.py file, use the argument `--ae_file=trained_autoencoder_f
 In order to evaluate the model for specific peptides or proteins, run:
 
 `python ERGO.py test model_type dataset sampling device --model_file=file.pt --test_data_file=file.pickle`
+
 When: 
+
 - `model_type` is `ae` for the TCR-autoencoder based model, or `lstm` for the lstm based model. 
+
 - `dataset` is `mcpas` for McPAS-TCR dataset, or `vdjdb` for VDJdb dataset. 
+
 - `sampling` can be `specific` for distinguishing different binders, `naive` for separating non-binders and binders, or `memory` for distinguishing binders and memory TCRs. 
+
 - `device` is a CUDA GPU device (e.g. 'cuda:0') or 'cpu' for CPU device. (All arguments same as the model which is now evaluated)
 
 The argument `--model_file=file.pt` is the trained model to be evaluated. The argument `--test_data_file=file.pickle` is the test data (which the model has not seen during training, in order to do so please save it in the training run command).
@@ -62,9 +72,13 @@ For binding prediction, run:
 `python ERGO.py predict model_type dataset sampling device --model_file=file.pt --test_data_file=file.csv`
 
 When: 
+
 - `model_type` is `ae` for the TCR-autoencoder based model, or `lstm` for the lstm based model.
+
 - `dataset` is `mcpas` for McPAS-TCR dataset, or `vdjdb` for VDJdb dataset. 
+
 - `sampling` can be `specific` for distinguishing different binders, `naive` for separating non-binders and binders, or `memory` for distinguishing binders and memory TCRs. 
+
 - `device` is a CUDA GPU device (e.g. 'cuda:0') or 'cpu' for CPU device.
 
 The argument `--model_file=file.pt` is the trained model. If you want to use our trained models, use `--model_file=auto`, and the code will choose the right trained model according to the arguments model_type, dataset and sampling. If you are using your model file, make sure that those arguments match the model.
