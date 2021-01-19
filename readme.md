@@ -1,7 +1,7 @@
-#ERGO
+# ERGO
 ERGO is a deep learing based model for predicting TCR-peptide binding.
 
-Python Dependencies and Requirements:
+### Python Dependencies and Requirements:
 pytorch 1.0.0
 numpy 1.15.4
 scikit-learn 0.19.2
@@ -9,7 +9,7 @@ The code has been tested on Linux 3.10.0-957.27.2.el7.x86_64.
 The code runs faster with GPU usage, but it should work also on CPU. It was developed on GPU (Nvidia Tesla K40m with CUDA 10.0).
 For initialization, download this repository or clone using git clone https://github.com/IdoSpringer/ERGO. It should take a few seconds.
 
-Model Training
+## Model Training
 Training a model should take about an hour. All runs use the main ERGO.py file.
 
 For training the ERGO model, run:
@@ -19,7 +19,7 @@ When: model_type is ae for the TCR-autoencoder based model, or lstm for the lstm
 
 Add the flag --protein suit the model for protein binding instead of specific peptide binding. Add the argument --train_auc_file=file to write down the model train AUC during training. Add the argument --test_auc_file=file to write down the model validation AUC during training. Add the argument --model_file=file.pt in order to save the trained model. Add the argument --test_data_file=file.pickle in order to save the test data.
 
-TCR Autoencoder
+## TCR Autoencoder
 The autoencoder based model requires a pre-trained TCR-autoencoder. for training the TCR-autoencoder, go to the TCR-Autoencoder directory using
 
 cd TCR_Autoencoder
@@ -40,7 +40,7 @@ The argument --model_file=file.pt is the trained model to be evaluated. The argu
 
 Add the flag --protein suit the model for protein binding instead of specific peptide binding.
 
-Prediction
+## Prediction
 You can use the models you have trained to predict new data, or you can use our already trained models in the models directory.
 
 Data for prediction must be in a .csv format, where the first column is the TCRs and the second column is the peptides. See example.
@@ -56,5 +56,5 @@ The argument --test_data_file=file.csv is the test data to predict in .csv forma
 
 The code should print the input TCRs and the peptides, with the predicted binding probabilities. Notice that in the autoencoder model, TCR max length is 28, so longer sequences will be ignored. Prediction should be take a few seconds.
 
-References
+## References
 Springer, I., Besser, H., Tickotsky-Moskovitz, N., Dvorkin, S. & Louzoun, Y. Prediction of specific TCR-peptide binding from large dictionaries of TCR-peptide pairs. bioRxiv 650861 (2019). doi:10.1101/650861
